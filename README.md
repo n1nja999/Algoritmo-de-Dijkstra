@@ -1,2 +1,2 @@
-# dijkstra-grafo-nao-orientado
-algoritmo de dijkstra - grafo nao orientado
+# dijkstra-grafo
+Algoritmo de Dijkstra
