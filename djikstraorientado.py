@@ -1,6 +1,8 @@
 import heapq
+
+
 def dijkstra(grafo, inicio):
-    distancias = {v: float('inf') for v in grafo}
+    distancias = {v: float("inf") for v in grafo}
     distancias[inicio] = 0
     fila = [(0, inicio)]
     while fila:
@@ -14,7 +16,8 @@ def dijkstra(grafo, inicio):
                 heapq.heappush(fila, (nova_distancia, vizinho))
     return distancias
 
-def ler_inteiro(mensagem, minimo = 0):
+
+def ler_inteiro(mensagem, minimo=0):
     while True:
         try:
             numero = int(input(mensagem))
@@ -24,15 +27,17 @@ def ler_inteiro(mensagem, minimo = 0):
             return numero
         except ValueError:
             print("Erro! Digite um numero inteiro.")
+
+
 grafo = {}
-qtd_vertices = ler_inteiro("Quantidade de vertices: ", 1)
+qtd_vertices = ler_inteiro("Quantidade de vértices: ", 1)
 for i in range(qtd_vertices):
     while True:
-        vertice = input(f"nome do vertice {i+1}: ").strip()
+        vertice = input(f"Nome do vértice {i+1}: ").strip()
         if not vertice:
             print("Erro! O nome nao pode ser vazio.")
         elif vertice in grafo:
-            print("Erro! Vertice ja cadastrado.")
+            print("Erro! Vertice já cadastrado.")
         else:
             grafo[vertice] = []
             break
@@ -45,10 +50,10 @@ for i in range(qtd_arestas):
         origem = input("Origem: ").strip()
         destino = input("Destino: ").strip()
         if origem not in grafo:
-            print("Erro! Vertice de origem nao existe.")
+            print("Erro! Vértice de origem nao existe.")
             continue
         if destino not in grafo:
-            print("Erro! Vertice de destino nao existe.")
+            print("Erro! Vértice de destino nao existe.")
             continue
         if (origem, destino) in arestas:
             print("Erro! Esta aresta ja foi cadastrada.")
@@ -57,19 +62,19 @@ for i in range(qtd_arestas):
         grafo[origem].append((destino, peso))
         arestas.add((origem, destino))
         break
-    print("\n====== grafo nao orientado ======")
+    print("\n====== GRAFO ORIENTADO======")
     for vertice, vizinhos in grafo.items():
         print(f"{vertice} -> {vizinhos}")
         while True:
-            inicio = input("\nVertice inicial: ").strip()
+            inicio = input("\nVértice inicial: ").strip()
             if inicio in grafo:
                 break
-            print("Erro! Vertice nao encontrado.")
+            print("Erro! Vértice nao encontrado.")
 
             resultado = dijkstra(grafo, inicio)
             print("\n==== Menores Distancias ====")
             for vertice, distancia in resultado.items():
-                if distancia == float('inf'):
-                    print(f"{inicio} -> {vertice} = sem caminho")
+                if distancia == float("inf"):
+                    print(f"{inicio} -> {vertice} = Sem caminho")
                 else:
                     print(f"{inicio} -> {vertice} = {distancia}")
